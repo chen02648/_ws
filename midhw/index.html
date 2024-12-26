@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非deno的网站设计框架使用方法</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5em;
+            color: #333;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 80%;
+            margin-top: 50px;
+        }
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #ccc;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease; /* 添加平滑过渡效果 */
+            cursor: pointer; /* 鼠标变为点击手势 */
+        }
+
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .circle:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 加深阴影 */
+            transform: translateY(-5px); /* 向上浮动 */
+        }
+
+        .circle:active {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 恢复较浅的阴影 */
+            transform: translateY(2px); /* 向下压 */
+        }
+
+        .caption {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <h1>非deno的网站设计框架使用方法</h1>
+    <div class="grid-container">
+        <div class="item">
+            <a href="express.html">
+                <div class="circle">
+                    <img src="images/express.png" alt="Express">
+                </div>
+                <div class="caption">Express</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="react.html">
+                <div class="circle">
+                    <img src="images/react.jpg" alt="React">
+                </div>
+                <div class="caption">React</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="vue.html">
+                <div class="circle">
+                    <img src="images/vue.jpg" alt="Vue">
+                </div>
+                <div class="caption">Vue</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="angular.html">
+                <div class="circle">
+                    <img src="images/angular.jpg" alt="Angular">
+                </div>
+                <div class="caption">Angular</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="rails.html">
+                <div class="circle">
+                    <img src="images/rails.jpg" alt="Rails">
+                </div>
+                <div class="caption">Rails</div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="django.html">
+                <div class="circle">
+                    <img src="images/django.png" alt="Django">
+                </div>
+                <div class="caption">Django</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express</title>
+    
+    <!-- 你的页面样式 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 顶部导航栏 -->
+    <div class="header">
+        <h1>非deno的网站设计框架使用方法：Express</h1>
+    </div>
+
+    <!-- 主内容容器 -->
+    <div class="container">
+        <!-- 左侧目录 -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#section1">什么是express</a></li>
+                <li><a href="#section2">express的特点</a></li>
+                <li><a href="#section3">Express 的应用场景</a></li>
+                <li>
+                    <a href="#section4">express实作</a>
+                    <ul>
+                        <li><a href="#section4_1">安装 Express</a></li>
+                        <li><a href="#section4_2">基本使用</a></li>
+                        <li><a href="#section4_3">配置</a></li>
+                        <li><a href="#section4_4">运行应用</a></li>
+                        <li><a href="#section4_5">中间件</a></li>
+                        <li><a href="#section4_6">路由系统</a></li>
+                        <li><a href="#section4_7">错误处理</a></li>
+                        <li><a href="#section4_8">模板引擎</a></li>
+                        <li><a href="#section4_9">静态文件服务</a></li>
+                        <li><a href="#section4_10">数据库集成</a></li>
+                        <li><a href="#section4_11">身份验证与授权</a></li>
+                        <li><a href="#section4_12">测试与调试</a></li>
+                        <li><a href="#section4_13">性能优化</a></li>
+                        <li><a href="#section4_14">部署与发布</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+        
+        
+
+        <!-- 右侧主要内容 -->
+        <main class="content">
+            <section id="section1" class="section">
+                <h2>介绍</h2>
+                <p>Express 是一个基于 Node.js 的快速、简洁、灵活的 Web 应用框架。它是目前最流行的 Node.js 框架之一，专为开发服务端应用程序而设计。Express 提供了一组强大的功能，包括路由、中间件支持等，使其成为构建 Web 应用程序和 API 的理想选择。</p>
+            </section>
+
+            <section id="section2" class="section">
+                <h2>Express 的特点</h2>
+                <ul>
+                    <li>
+                        <strong>轻量但强大：</strong> Express 本身是一个最小化的框架，但可以通过插件（中间件）扩展功能。
+                    </li>
+                    <li>
+                        <strong>路由系统：</strong> 提供简洁的路由定义方法，支持动态路由参数，轻松构建复杂 API。
+                    </li>
+                    <li>
+                        <strong>中间件机制：</strong> 使用中间件将请求和响应分步骤处理，例如记录日志、解析数据等。
+                    </li>
+                    <li>
+                        <strong>模板引擎支持：</strong> 支持多种模板引擎，如 EJS、Pug、Handlebars，便于构建动态页面。
+                    </li>
+                    <li>
+                        <strong>高性能：</strong> 与 Node.js 的异步机制完美结合，性能出色。
+                    </li>
+                    <li>
+                        <strong>强大的社区和生态系统：</strong> 广泛的社区支持，提供丰富的第三方库和工具。
+                    </li>
+                </ul>
+            </section>
+
+            <section id="section3" class="section">
+                <h2>Express 的应用场景</h2>
+                <ul>
+                    <li>
+                        <strong>构建RESTful API：</strong> Express 非常适合用于快速搭建 RESTful API，提供清晰的路由和中间件支持。
+                    </li>
+                    <li>
+                        <strong>单页面应用程序（SPA）后台服务：</strong> Express 能够高效管理前后端分离的单页面应用程序的后台接口。
+                    </li>
+                    <li>
+                        <strong>快速原型开发：</strong> 由于其轻量级和易用性，Express 是快速构建原型应用程序的理想选择。
+                    </li>
+                    <li>
+                        <strong>微服务架构：</strong> Express 的模块化设计适合创建独立的小型服务，便于微服务体系的扩展。
+                    </li>
+                    <li>
+                        <strong>中小型应用：</strong> 对于需要快速交付的中小型项目，Express 是一种性价比高的选择。
+                    </li>
+                </ul>
+            </section>
+
+            <section id="section4" class="section">
+                <h2>Express 实作</h2>
+                <p>以下是 Express 的一个完整简单案例，包括安装、使用、配置、操作的步骤。</p>
+            
+                <section id="section4_1">
+                    <h3>1. 安装 Express</h3>
+                    <p>在你的系统上安装 Express：</p>
+                    <pre><code>
+    # 使用 npm 安装 Express
+    npm install express --save
+                    </code></pre>
+                </section>
+            
+            
+                <section id="section4_2">
+                <h3>2. 基本使用</h3>
+                <p>创建一个简单的 Express 应用：</p>
+                <pre><code>
+    const express = require('express');
+    const app = express();
+            
+    app.get('/', (req, res) => {
+        res.send('Hello, Express!');
+    });
+            
+    app.listen(3000, () => {
+        console.log('Server is running on http://localhost:3000');
+    });
+                </code></pre>
+            </section>
+            
+            <section id="section4_3">
+                <h3>3. 配置</h3>
+                <p>通过中间件添加配置：</p>
+                <pre><code>
+    const express = require('express');
+    const app = express();
+            
+    app.use(express.json());
+            
+    app.post('/data', (req, res) => {
+        console.log(req.body);
+        res.send('Data received');
+    });
+            
+    app.listen(3000, () => {
+        console.log('Server is running on http://localhost:3000');
+    });
+                </code></pre>
+            </section>
+            
+            <section id="section4_4">
+                <h3>4. 运行应用</h3>
+                <p>运行你的 Express 应用：</p>
+                <pre><code>
+    # 启动应用
+    node app.js
+                </code></pre>
+            </section>
+
+            <section id="section4_5">
+            
+                <h3>5. 中间件</h3>
+                <p>中间件是 Express 中的核心部分，用于处理请求和响应。你可以使用现有的中间件，或者编写自定义的中间件。以下是使用中间件的示例：</p>
+                <pre><code>
+    app.use(express.json()); // 使用内置的 JSON 解析中间件
+            
+    // 自定义中间件
+    app.use((req, res, next) => {
+        console.log(`${req.method} ${req.url}`);
+        next();
+    });
+                </code></pre>
+            </section>
+            
+                <section id="section4_6">
+                <h3>6. 路由系统</h3>
+                <p>Express 提供了强大的路由系统，支持 RESTful 风格的路由：</p>
+                <pre><code>
+    const express = require('express');
+    const app = express();
+    const router = express.Router();
+            
+    router.get('/', (req, res) => {
+        res.send('Welcome to the Express API!');
+    });
+            
+    app.use('/api', router); // 使用路由
+            
+    app.listen(3000, () => {
+        console.log('Server is running on http://localhost:3000');
+    });
+                </code></pre>
+            </section>
+
+                <section id="section4_7">
+                <h3>7. 错误处理</h3>
+                <p>Express 提供了错误处理中间件，你可以自定义处理错误：</p>
+                <pre><code>
+    app.use((req, res, next) => {
+        res.status(404).send('Not Found');
+    });
+            
+    app.use((err, req, res, next) => {
+        console.error(err.stack);
+        res.status(500).send('Something went wrong!');
+    });
+                </code></pre>
+            </section>
+            
+
+                <section id="section4_8">
+                <h3>8. 模板引擎</h3>
+                <p>Express 支持多种模板引擎，可以方便地生成动态 HTML 页面：</p>
+                <pre><code>
+    app.set('view engine', 'ejs');
+            
+    app.get('/', (req, res) => {
+        res.render('index', { title: 'Express App' });
+    });
+                </code></pre>
+            </section>
+            
+
+                <section id="section4_9">
+                <h3>9. 静态文件服务</h3>
+                <p>Express 可以提供静态文件服务，支持图片、CSS、JavaScript 等文件：</p>
+                <pre><code>
+    app.use(express.static('public')); // 提供 public 目录下的静态文件
+                </code></pre>
+            </section>
+            
+
+                <section id="section4_10">
+                <h3>10. 数据库集成</h3>
+                <p>你可以将 Express 与 MongoDB、MySQL 等数据库结合，实现 CRUD 操作：</p>
+                <pre><code>
+    const mongoose = require('mongoose');
+    mongoose.connect('mongodb://localhost/mydb');
+            
+    const User = mongoose.model('User', { name: String, age: Number });
+            
+    app.get('/users', async (req, res) => {
+        const users = await User.find();
+        res.json(users);
+    });
+                </code></pre>
+            </section>
+            
+
+                <section id="section4_11">
+                <h3>11. 身份验证与授权</h3>
+                <p>你可以通过 JWT 或 Passport.js 实现用户认证和授权：</p>
+                <pre><code>
+    const jwt = require('jsonwebtoken');
+            
+    // 登录
+    app.post('/login', (req, res) => {
+        const token = jwt.sign({ userId: 1 }, 'secretkey');
+        res.json({ token });
+    });
+            
+    // 认证中间件
+    const authenticate = (req, res, next) => {
+        const token = req.headers['authorization'];
+        if (!token) return res.status(403).send('Token is required');
+              
+        jwt.verify(token, 'secretkey', (err, decoded) => {
+            if (err) return res.status(500).send('Failed to authenticate');
+            req.user = decoded;
+            next();
+        });
+    };
+            
+    app.get('/protected', authenticate, (req, res) => {
+        res.send('Protected route');
+    });
+                </code></pre>
+            </section>
+            
+                <section id="section4_12">
+                <h3>12. 测试与调试</h3>
+                <p>使用 Mocha 和 Chai 等工具进行单元测试。</p>
+            </section>
+            
+                <section id="section4_13">
+                <h3>13. 性能优化</h3>
+                <p>使用压缩中间件和缓存控制提升应用性能。</p>
+            </section>
+            
+                <section id="section4_14">
+                <h3>14. 部署与发布</h3>
+                <p>学习如何将 Express 应用部署到服务器，如 Heroku 或 Docker。</p>
+            </section>
+            </section>
+            
+        </main>
+    </div>
+    <script src="js/scroll-sync.js"></script>
+</body>
+</html>

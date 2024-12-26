@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <div class="header">
+        <h1>非deno的网站设计框架使用方法：Vue</h1>
+    </div>
+
+    <!-- 主内容容器 -->
+    <div class="container">
+        <!-- 左侧目录 -->
+        <aside class="sidebar">
+        <ul>
+            <li><a href="#section1">什么是 Vue</a></li>
+            <li><a href="#section2">Vue 的特点</a></li>
+            <li><a href="#section3">Vue 的应用场景</a></li>
+            <li>
+                <a href="#section4">Vue 实作</a>
+                <ul>
+                    <li><a href="#section4_1">安装 vue</a></li>
+                    <li><a href="#section4_2">基本使用</a></li>
+                    <li><a href="#section4_3">配置vue</a></li>
+                    <li><a href="#section4_4">操作</a></li>
+                </ul>
+            </li>
+        </ul>
+        </aside>
+
+        <!-- 右侧主要内容 -->
+        <main class="content">
+            <section id="section1" class="section">
+                <h2>什么是 Vue</h2>
+                <p>Vue.js 是一个用于构建用户界面的渐进式 JavaScript 框架。与其他前端框架（如 React 或 Angular）相比，Vue 的设计理念是尽量轻量、灵活且易于上手。它关注的是视图层的构建，允许开发者通过简单的模板语法和数据绑定快速构建现代化的单页应用（SPA）。</p>
+            </section>
+
+            <section id="section2" class="section">
+                <h2>Vue 的特点</h2>
+                <ul>
+                    <li>
+                        <strong>渐进式框架：</strong> Vue 是一个渐进式框架，意味着你可以根据需要逐步引入 Vue，从小范围集成到逐步扩展应用，甚至完全使用 Vue 来构建项目。
+                    </li>
+                    <li>
+                        <strong>双向数据绑定：</strong> Vue 提供了双向数据绑定，使得视图和数据状态自动同步，数据变化时视图更新，视图变化时数据自动反映。
+                    </li>
+                    <li>
+                        <strong>组件化开发：</strong> Vue 允许通过组件化开发方式将应用拆分成多个独立的可复用组件，提高了应用的可维护性和扩展性。
+                    </li>
+                    <li>
+                        <strong>虚拟 DOM：</strong> Vue 使用虚拟 DOM 来提高渲染效率，只有发生变化的部分会被重新渲染，避免了频繁的 DOM 操作。
+                    </li>
+                    <li>
+                        <strong>响应式系统：</strong> Vue 的响应式系统可以自动追踪数据变化并更新相关视图，减少了手动 DOM 操作，提升了开发效率。
+                    </li>
+                    <li>
+                        <strong>简洁的模板语法：</strong> Vue 使用 HTML 样式的模板语法，结合 Vue 特有的指令，能够帮助开发者快速构建动态的用户界面。
+                    </li>
+                    <li>
+                        <strong>生态系统和工具：</strong> Vue 提供了完善的生态系统，包括 Vue Router（路由管理）、Vuex（状态管理）以及 Vue CLI（项目脚手架工具），帮助开发者高效构建项目。
+                    </li>
+                    <li>
+                        <strong>良好的文档和社区支持：</strong> Vue 提供了详细且易懂的文档，并且有一个活跃的社区，开发者可以轻松找到解决方案和支持。
+                    </li>
+                </ul>
+            </section>
+
+            <section id="section3" class="section">
+                <h2>Vue的应用场景</h2>
+                <ul>
+                    <li>
+                        <strong>单页应用（SPA）：</strong> Vue 非常适合构建单页应用，结合 Vue Router 和 Vuex，可以轻松管理路由和状态。
+                    </li>
+                    <li>
+                        <strong>动态内容展示：</strong> Vue 的响应式特性使其非常适合展示动态内容，如新闻网站、社交媒体、实时数据更新等。
+                    </li>
+                    <li>
+                        <strong>后台管理系统：</strong> Vue 的组件化和响应式系统特别适合构建后台管理系统，尤其是在展示大量数据和交互时。
+                    </li>
+                    <li>
+                        <strong>内容管理系统（CMS）：</strong> Vue 的组件化特性使其非常适合用于构建灵活、可扩展的内容管理系统。
+                    </li>
+                    <li>
+                        <strong>移动端应用：</strong> Vue 结合 Vue Native 可以用于开发跨平台的移动应用，提供类似传统 Web 应用的开发体验。
+                    </li>
+                    <li>
+                        <strong>实时应用：</strong> Vue 的响应式系统适合构建实时性要求高的应用，例如聊天应用、在线游戏等。
+                    </li>
+                </ul>
+            </section>
+
+            <section id="section4" class="section">
+                <h2>Vue 实作</h2>
+                <p>下面是一个 Vue 实作的简单案例，分步介绍 Vue 的安装、使用、配置和操作。</p>
+            
+                <section id="section4_1">
+                    <h3>准备工作</h3>
+                    <h3>1. 安装 Express</h3>
+                    <p>首先，确保你已经安装了 Node.js。你可以通过运行以下命令来检查是否已经安装：</p>
+                    <pre><code>
+node -v
+npm -v
+                    </code></pre>
+                    <p>如果没有安装 Node.js，可以从 <a href="https://nodejs.org/">Node.js官网</a> 下载并安装。</p>
+            
+                    <h4>1.1 在不同操作系统上安装 Express</h4>
+                    <p>接下来，创建一个新的项目文件夹并进入该文件夹：</p>
+                    <pre><code>
+mkdir vue-express-app
+cd vue-express-app
+                    </code></pre>
+                    <p>初始化一个新的 Node.js 项目：</p>
+                    <pre><code>
+npm init -y
+                    </code></pre>
+                    <p>安装 Express：</p>
+                    <pre><code>
+npm install express
+                    </code></pre>
+                    <p>安装完成后，Express 会作为依赖被添加到 <code>node_modules</code> 文件夹中。</p>
+                </section>
+            
+                <section id="section4_2" class="section">
+                    <h2>基本使用</h2>
+                    <h3>2. 创建 Express 服务器</h3>
+                    <p>在项目根目录下，创建一个新的文件 <code>server.js</code>，并编写如下代码：</p>
+                    <pre><code>
+const express = require('express');
+const app = express();
+const port = 3000;
+            
+app.get('/', (req, res) => {
+    res.send('Hello from Express!');
+});
+            
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+});
+                    </code></pre>
+                    <p>然后运行服务器：</p>
+                    <pre><code>
+node server.js
+                    </code></pre>
+                    <p>在浏览器中访问 <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>，你应该看到页面显示 <code>Hello from Express!</code>。</p>
+                </section>
+            
+                <section id="section4_3" class="section">
+                    <h2>3. 配置 Vue 项目</h2>
+                    <p>接下来，我们将使用 Vue 来构建一个前端页面，并通过 Express 提供的接口与后端进行交互。</p>
+                    
+                    <h4>3.1 安装 Vue CLI</h4>
+                    <p>如果你没有安装 Vue CLI，可以通过 npm 全局安装：</p>
+                    <pre><code>
+npm install -g @vue/cli
+                    </code></pre>
+                    <p>然后创建一个新的 Vue 项目：</p>
+                    <pre><code>
+vue create frontend
+                    </code></pre>
+                    <p>按照提示选择默认配置或自定义配置。</p>
+            
+                    <h4>3.2 启动 Vue 项目</h4>
+                    <p>进入 Vue 项目目录：</p>
+                    <pre><code>
+cd frontend
+                    </code></pre>
+                    <p>然后启动 Vue 项目的开发服务器：</p>
+                    <pre><code>
+npm run serve
+                    </code></pre>
+                    <p>在浏览器中访问 <a href="http://localhost:8080" target="_blank">http://localhost:8080</a>，你应该能够看到 Vue 项目的默认页面。</p>
+                </section>
+            
+                <section id="section4_4" class="section">
+                    <h2>4.操作</h2>
+                    <h3>配置 Vue 与 Express 通信</h3>
+                    <p>接下来，我们将让 Vue 前端与 Express 后端进行交互。</p>
+            
+                    <h4>4.1 修改 Vue 项目</h4>
+                    <p>打开 Vue 项目的 <code>src/App.vue</code> 文件，修改其中的内容以添加与后端的交互：</p>
+                    <pre><code>
+&lt;template&gt;
+&lt;div id="app"&gt;
+    &lt;h1&gt;{{ message }}&lt;/h1&gt;
+        &lt;/div&gt;
+    &lt;/template&gt;
+                      
+    &lt;script&gt;
+        export default {
+            name: 'App',
+            data() {
+                return {
+                    message: ''
+                };
+            },
+            mounted() {
+                fetch('http://localhost:3000')
+                .then(response =&gt; response.text())
+                .then(data =&gt; {
+                    this.message = data;
+                });
+            }
+            };
+    &lt;/script&gt;
+                      
+                    </code></pre>
+            
+                    <h4>4.2 重新启动 Vue 开发服务器</h4>
+                    <p>如果 Vue 项目的开发服务器已停止，重新启动它：</p>
+                    <pre><code>
+npm run serve
+                    </code></pre>
+                    <p>访问 <a href="http://localhost:8080" target="_blank">http://localhost:8080</a>，你应该看到页面显示 <code>Hello from Express!</code>。</p>
+
+                    <h4>4.3 配置 Express 提供 Vue 编译后的静态文件</h4>
+                    <p>为了让 Express 提供 Vue 编译后的静态文件，我们需要将 Vue 项目构建成生产版本，然后配置 Express 进行服务。</p>
+            
+                    <h5>4.3.1 构建生产版本</h5>
+                    <p>在 Vue 项目中，运行以下命令来生成生产版本的文件：</p>
+                    <pre><code>
+npm run build
+                    </code></pre>
+                    <p>这将在 <code>dist</code> 文件夹中生成生产版本的文件。</p>
+            
+                    <h5>4.3.2 修改 Express 配置</h5>
+                    <p>返回到 <code>server.js</code> 文件，修改代码以提供 Vue 编译后的静态文件：</p>
+                    <pre><code>
+const express = require('express');
+const path = require('path');
+const app = express();
+const port = 3000;
+            
+app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
+            
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+});
+            
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+});
+                    </code></pre>
+            
+                    <h5>4.3.3 启动 Express 服务器</h5>
+                    <p>运行 Express 服务器：</p>
+                    <pre><code>
+node server.js
+                    </code></pre>
+                    <p>访问 <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>，你应该能看到 Vue 编译后的页面。</p>
+                </section>
+            </section>            
+        </main>
+    </div>
+</body>
+</html>

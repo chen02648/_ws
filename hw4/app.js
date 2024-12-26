@@ -1,5 +1,5 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
-import * as render from './render.js'
+import * as render from './render.js';
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import { Session } from "https://deno.land/x/oak_sessions/mod.ts";
 
@@ -18,49 +18,50 @@ router.get('/', list)
   .get('/post/new', add)
   .get('/post/:id', show)
   .post('/post', create)
+  .get('/list/:user', listUserPosts);  // 新增：根据用户名显示该用户的帖子
 
-const app = new Application()
-app.use(Session.initMiddleware())
+const app = new Application();
+app.use(Session.initMiddleware());
 app.use(router.routes());
 app.use(router.allowedMethods());
 
 function sqlcmd(sql, arg1) {
-  console.log('sql:', sql)
+  console.log('sql:', sql);
   try {
-    var results = db.query(sql, arg1)
-    console.log('sqlcmd: results=', results)
-    return results
+    var results = db.query(sql, arg1);
+    console.log('sqlcmd: results=', results);
+    return results;
   } catch (error) {
-    console.log('sqlcmd error: ', error)
-    throw error
+    console.log('sqlcmd error: ', error);
+    throw error;
   }
 }
 
 function postQuery(sql) {
-  let list = []
+  let list = [];
   for (const [id, username, title, body] of sqlcmd(sql)) {
-    list.push({id, username, title, body})
+    list.push({id, username, title, body});
   }
-  console.log('postQuery: list=', list)
-  return list
+  console.log('postQuery: list=', list);
+  return list;
 }
 
 function userQuery(sql) {
-  let list = []
+  let list = [];
   for (const [id, username, password, email] of sqlcmd(sql)) {
-    list.push({id, username, password, email})
+    list.push({id, username, password, email});
   }
-  console.log('userQuery: list=', list)
-  return list
+  console.log('userQuery: list=', list);
+  return list;
 }
 
 async function parseFormBody(body) {
-  const pairs = await body.form()
-  const obj = {}
+  const pairs = await body.form();
+  const obj = {};
   for (const [key, value] of pairs) {
-    obj[key] = value
+    obj[key] = value;
   }
-  return obj
+  return obj;
 }
 
 async function signupUi(ctx) {
@@ -68,17 +69,18 @@ async function signupUi(ctx) {
 }
 
 async function signup(ctx) {
-  const body = ctx.request.body
+  const body = ctx.request.body;
   if (body.type() === "form") {
-    var user = await parseFormBody(body)
-    console.log('user=', user)
-    var dbUsers = userQuery(`SELECT id, username, password, email FROM users WHERE username='${user.username}'`)
-    console.log('dbUsers=', dbUsers)
+    var user = await parseFormBody(body);
+    console.log('user=', user);
+    var dbUsers = userQuery(`SELECT id, username, password, email FROM users WHERE username='${user.username}'`);
+    console.log('dbUsers=', dbUsers);
     if (dbUsers.length === 0) {
       sqlcmd("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", [user.username, user.password, user.email]);
-      ctx.response.body = render.success()
-    } else 
-      ctx.response.body = render.fail()
+      ctx.response.body = render.success();
+    } else {
+      ctx.response.body = render.fail();
+    }
   }
 }
 
@@ -87,58 +89,58 @@ async function loginUi(ctx) {
 }
 
 async function login(ctx) {
-  const body = ctx.request.body
+  const body = ctx.request.body;
   if (body.type() === "form") {
-    var user = await parseFormBody(body)
-    var dbUsers = userQuery(`SELECT id, username, password, email FROM users WHERE username='${user.username}'`) // userMap[user.username]
-    var dbUser = dbUsers[0]
+    var user = await parseFormBody(body);
+    var dbUsers = userQuery(`SELECT id, username, password, email FROM users WHERE username='${user.username}'`);
+    var dbUser = dbUsers[0];
     if (dbUser.password === user.password) {
-      ctx.state.session.set('user', user)
-      console.log('session.user=', await ctx.state.session.get('user'))
+      ctx.state.session.set('user', user);
+      console.log('session.user=', await ctx.state.session.get('user'));
       ctx.response.redirect('/');
     } else {
-      ctx.response.body = render.fail()
+      ctx.response.body = render.fail();
     }
   }
 }
 
 async function logout(ctx) {
-   ctx.state.session.set('user', null)
-   ctx.response.redirect('/')
+  ctx.state.session.set('user', null);
+  ctx.response.redirect('/');
 }
 
 async function list(ctx) {
-  let posts = postQuery("SELECT id, username, title, body FROM posts")
-  console.log('list:posts=', posts)
+  let posts = postQuery("SELECT id, username, title, body FROM posts");
+  console.log('list:posts=', posts);
   ctx.response.body = await render.list(posts, await ctx.state.session.get('user'));
 }
 
 async function add(ctx) {
-  var user = await ctx.state.session.get('user')
+  var user = await ctx.state.session.get('user');
   if (user != null) {
     ctx.response.body = await render.newPost();
   } else {
-    ctx.response.body = render.fail()
+    ctx.response.body = render.fail();
   }
 }
 
 async function show(ctx) {
   const pid = ctx.params.id;
-  let posts = postQuery(`SELECT id, username, title, body FROM posts WHERE id=${pid}`)
-  let post = posts[0]
-  console.log('show:post=', post)
+  let posts = postQuery(`SELECT id, username, title, body FROM posts WHERE id=${pid}`);
+  let post = posts[0];
+  console.log('show:post=', post);
   if (!post) ctx.throw(404, 'invalid post id');
   ctx.response.body = await render.show(post);
 }
 
 async function create(ctx) {
-  const body = ctx.request.body
+  const body = ctx.request.body();
   if (body.type() === "form") {
-    var post = await parseFormBody(body)
-    console.log('create:post=', post)
-    var user = await ctx.state.session.get('user')
+    var post = await parseFormBody(body);
+    console.log('create:post=', post);
+    var user = await ctx.state.session.get('user');
     if (user != null) {
-      console.log('user=', user)
+      console.log('user=', user);
       sqlcmd("INSERT INTO posts (username, title, body) VALUES (?, ?, ?)", [user.username, post.title, post.body]);  
     } else {
       ctx.throw(404, 'not login yet!');
@@ -147,5 +149,12 @@ async function create(ctx) {
   }
 }
 
-console.log('Server run at http://127.0.0.1:8000')
+async function listUserPosts(ctx) {
+  const user = ctx.params.user;
+  let posts = postQuery(`SELECT id, username, title, body FROM posts WHERE username='${user}'`);
+  console.log('listUserPosts: posts=', posts);
+  ctx.response.body = await render.list(posts, await ctx.state.session.get('user'));
+}
+
+console.log('Server run at http://127.0.0.1:8000');
 await app.listen({ port: 8000 });

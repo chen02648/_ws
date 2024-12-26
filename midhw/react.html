@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>react</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <div class="header">
+        <h1>非deno的网站设计框架使用方法：react</h1>
+    </div>
+
+    <!-- 主内容容器 -->
+    <div class="container">
+        <!-- 左侧目录 -->
+        <aside class="sidebar">
+        <ul>
+            <li><a href="#section1">什么是 React</a></li>
+            <li><a href="#section2">React 的特点</a></li>
+            <li><a href="#section3">React 的应用场景</a></li>
+            <li>
+                <a href="#section4">React 实作</a>
+                <ul>
+                    <li><a href="#section4_1">安装 React</a></li>
+                    <li><a href="#section4_2">基本使用</a></li>
+                    <li><a href="#section4_3">配置react</a></li>
+                    <li><a href="#section4_4">操作</a></li>
+                </ul>
+            </li>
+        </ul>
+        </aside>
+        
+
+        <!-- 右侧主要内容 -->
+        <main class="content">
+            <section id="section1" class="section">
+                <h2>什么是react</h2>
+                <p>React 是一个由 Meta（原 Facebook） 开发和维护的 前端 JavaScript 库，用于构建用户界面（UI）。React 主要用于构建单页应用程序（SPA），它通过组件化的方式，使开发者能够轻松地创建动态、交互性强的应用程序。</p>
+            </section>
+
+            <section id="section2" class="section">
+                <h2>react的特点</h2>
+                <ul>
+                    <li>
+                        <strong>组件化：</strong> React 应用由可复用的组件组成，每个组件独立负责一个小功能或 UI 部分，使开发更加模块化。
+                    </li>
+                    <li>
+                        <strong>声明式：</strong> 开发者只需描述界面应如何渲染，React 会根据数据变化自动更新 DOM，减少手动操作 DOM 的复杂性。
+                    </li>
+                    <li>
+                        <strong>虚拟 DOM：</strong> React 使用虚拟 DOM 提升性能，仅更新需要变化的部分，而非整个页面的重绘。
+                    </li>
+                    <li>
+                        <strong>单向数据流：</strong> 数据通过父组件向子组件传递，使数据管理清晰且可控。
+                    </li>
+                    <li>
+                        <strong>JSX（JavaScript XML）：</strong> 提供类 HTML 的模板语法，使代码更直观，同时支持 JavaScript 的强大功能。
+                    </li>
+                    <li>
+                        <strong>强大的生态系统：</strong> React 拥有丰富的第三方工具和库，如路由管理、状态管理，以及服务器端渲染支持。
+                    </li>
+                </ul>
+                
+            </section>
+
+            <section id="section3" class="section">
+                <h2>react的应用场景</h2>
+                <ul>
+                    <li>
+                        <strong>单页面应用程序（SPA）：</strong> React 非常适合构建具有高动态交互性和快速响应能力的单页面应用程序。
+                    </li>
+                    <li>
+                        <strong>复杂交互界面：</strong> React 能够帮助开发社交媒体、仪表盘、实时聊天应用等交互性强的界面。
+                    </li>
+                    <li>
+                        <strong>嵌入式组件开发：</strong> React 组件可以被嵌入到非 React 项目中，为传统多页面应用提供独立的动态功能模块。
+                    </li>
+                    <li>
+                        <strong>移动应用开发：</strong> 使用 React Native，可以开发跨平台的移动应用，与 React 生态紧密结合。
+                    </li>
+                    <li>
+                        <strong>快速开发和原型设计：</strong> React 的模块化和灵活性，使其成为快速开发原型应用和 MVP 的首选工具。
+                    </li>
+                </ul>
+            </section>
+
+            <section id="section4" class="section">
+                <h2>React 实作</h2>
+                <p>下面是一个 React 实作的简单案例，分步介绍 React 的安装、使用、配置和操作。</p>
+
+                <section id="section4_1">
+                    <h3>1. 安装 React</h3>
+                    <p>React 可以通过 create-react-app 工具快速创建一个新项目，create-react-app 是一个官方推荐的工具，它能够帮助开发者快速启动 React 项目。</p>
+                        <h4>1.1 安装 Node.js 和 npm</h4>
+                        <p>首先，确保你已经安装了 Node.js（它会自动安装 npm）。你可以通过在终端（或命令提示符）中运行以下命令来检查 Node.js 和 npm 是否已安装：</p>
+                    <pre><code>
+    node -v
+    npm -v   
+                    </code></pre>
+                        <p>如果没有安装 Node.js，可以访问官网下载安装程序，或者通过包管理工具（如 Homebrew、apt、yum 等）安装。</p>
+                        <h4>1.2 创建新项目</h4>
+                        <p>一旦 Node.js 和 npm 安装完成，你可以通过以下步骤来创建一个 React 应用：</p>
+                    <pre><code>
+# 安装 create-react-app 工具
+npm install -g create-react-app
+
+# 使用 create-react-app 创建一个新的 React 项目
+create-react-app my-react-app
+
+# 进入项目目录
+cd my-react-app
+
+                    </code></pre>
+                        <h4>1.3 运行 React 应用</h4>
+                        <p>在创建好项目之后，使用以下命令启动开发服务器：</p>
+                    <pre><code>
+npm start
+                    </code></pre>
+                        <p>该命令会自动打开一个浏览器窗口，地址为 http://localhost:3000，你可以看到 React 应用的默认欢迎页面。</p>
+                </section>
+
+                <section id="section4_2" class="section">
+                <h3>基本使用</h3>
+                <p>创建好 React 项目后，create-react-app 会生成一个简单的应用结构，其中包含了默认的页面和组件。你可以开始修改和开发自己的应用。</p>
+                    <h4>2.1 修改 App.js</h4>
+                    <p>打开项目中的 src/App.js 文件，你会看到如下默认代码：</p>
+                    <pre><code>
+import React from 'react';
+import './App.css';
+
+function App() {
+  return (
+    &lt;div className="App"&gt;
+        &lt;header className="App-header"&gt;
+        &lt;h1&gt;Welcome to React&lt;/h1&gt;
+        &lt;/header&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+
+                    </code></pre>
+                    <p>你可以修改这部分代码，添加自己的内容。比如，修改为一个简单的按钮组件：</p>
+                    <pre><code>
+import React from 'react';
+import './App.css';
+
+function App() {
+  const handleClick = () => {
+    alert('Button Clicked!');
+  };
+
+  return (
+    &lt;div className="App"&gt;
+        &lt;header className="App-header"&gt;
+        &lt;h1&gt;Welcome to React&lt;/h1&gt;
+        &lt;button onClick={handleClick}&gt;Click Me&lt;/button&gt;
+    &lt;/header&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+
+                    </code></pre>
+                </section>
+
+
+                <section id="section4_3" class="section">
+                    <h3>配置react</h3>
+                    <p>React 项目可以通过修改一些配置文件来自定义应用，比如修改 webpack 配置、设置代理等。</p>
+                        <h4>3.1 修改 package.json</h4>
+                            <p>React 项目的配置文件 package.json 包含了应用的基本信息、依赖项、脚本等。你可以根据需要进行修改，例如添加新的依赖或配置环境变量。</p>
+                            <p>如果你需要设置开发服务器代理，可以在 package.json 中添加如下配置：</p>
+                        <pre><code>
+"proxy": "http://localhost:5000"
+                        </code></pre>
+                            <p>这会将所有未匹配到静态文件的请求代理到 http://localhost:5000，通常用于与后台 API 的开发配合。</p>
+                        <h4>3.2 使用环境变量</h4>
+                            <p>React 支持使用环境变量来控制开发和生产环境的不同配置。你可以在 .env 文件中设置环境变量</p>
+                        <pre><code>
+REACT_APP_API_URL=https://api.example.com
+                        </code></pre>
+                            <p>然后在代码中访问这个变量：</p>
+                        <pre><code>
+const apiUrl = process.env.REACT_APP_API_URL;
+                        </code></pre>
+
+                </section>
+
+                    <section id="section4_4" class="section">
+                        <h3>操作</h3>
+                            <h4>4.1 组件的使用与状态管理</h4>
+                                <p>React 的核心是组件。你可以通过使用组件来组织 UI，组件可以是类组件或函数组件。</p>
+                                <h5>4.1.1 类组件</h5>
+                                    <pre><code>
+import React, { Component } from 'react';
+
+class MyComponent extends Component {
+  constructor() {
+    super();
+    this.state = { count: 0 };
+  }
+
+  increment = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  render() {
+    return (
+        &lt;div&gt;
+            &lt;h1&gt;Count: {this.state.count}&lt;/h1&gt;
+            &lt;button onClick={this.increment}&gt;Increment&lt;/button&gt;
+        &lt;/div&gt;
+    );
+  }
+}
+
+export default MyComponent;
+
+                                    </code></pre>
+                                <h5>4.1.2 函数组件（使用 React Hook）</h5>
+                                    <pre><code>
+import React, { useState } from 'react';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    &lt;div&gt;
+        &lt;h1&gt;Count: {count}&lt;/h1&gt;
+        &lt;button onClick={increment}&gt;Increment&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default MyComponent;
+
+                                    </code></pre>
+                            <h4>4.2 事件处理</h4>
+                                <p>React 使用虚拟 DOM 来提升性能，当你需要响应用户的操作时，可以通过事件处理来更新组件的状态。例如，在上面的 increment 函数中，点击按钮后会触发 setCount 来更新状态，React 会自动重新渲染组件。</p>
+                            <h4>4.3 使用 Props 和 State</h4>
+                                <p>Props：通过组件间传递数据。Props 是只读的，不能被子组件修改。</p>
+                                <p>State：用于组件内部的状态管理，通常通过 this.setState() 或 useState() 来更新。</p>
+                            <h4>4.4 条件渲染</h4>
+                                <p>你可以根据条件渲染不同的 UI：</p>
+                                    <pre><code>
+function MyComponent({ isLoggedIn }) {
+  return (
+    &lt;div&gt;
+        {isLoggedIn ? &lt;h1&gt;Welcome Back!&lt;/h1&gt; : &lt;h1&gt;Please Log In&lt;/h1&gt;}
+    &lt;/div&gt;
+  );
+}
+
+                                    </code></pre>
+                            <h5>4.5 列表渲染</h5>
+                                <p>React 可以通过 .map() 方法渲染列表：</p>
+                                <pre><code>
+function ItemList() {
+  const items = ['Apple', 'Banana', 'Cherry'];
+
+  return (
+    &lt;ul&gt;
+        {items.map((item, index) =&gt; (
+        &lt;li key={index}&gt;{item}&lt;/li&gt;
+        ))}
+    &lt;/ul&gt;
+  );
+}
+
+                                </code></pre>
+                        </section>
+            </section>
+        </main>
+    </div>
+    <script src="js/scroll-sync.js"></script>
+</body>
+</html>

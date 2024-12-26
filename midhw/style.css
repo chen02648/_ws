@@ -1,0 +1,165 @@
+/* 全局样式 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* 顶部导航栏 */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding: 20px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    line-height: 1.4;
+}
+
+/* 页面主容器 */
+.container {
+    display: flex;
+    margin: 100px auto 20px; /* 为了避开固定导航栏 */
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+/* 左侧目录 */
+.sidebar {
+    flex: 1;
+    max-width: 250px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 100px;
+    height: calc(100vh - 100px); /* 高度保持一致 */
+    overflow-y: auto; /* 目录内容滚动 */
+    padding-right: 10px; /* 为了防止滚动条遮挡内容 */
+}
+
+/* 目录列表样式 */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 目录项 */
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+/* 目录链接 */
+.sidebar ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: #0056b3;
+}
+
+/* 为左侧目录中的嵌套子目录设置缩进 */
+.sidebar ul ul {
+    padding-left: 20px; /* 给嵌套的目录项添加左侧留白 */
+}
+
+/* 右侧内容 */
+.content {
+    flex: 3;
+    background-color: #fff;
+    padding: 20px;
+    margin-left: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow-y: auto; /* 使内容区域可以滚动 */
+    max-height: calc(100vh - 100px); /* 保持与目录同步的高度 */
+    padding-right: 10px; /* 给内容部分留出滚动条空间 */
+}
+
+/* 右侧内容的标题 */
+.content h2 {
+    margin-top: 20px;
+    font-size: 1.8em;
+}
+
+/* 右侧内容的段落 */
+.content p {
+    margin: 10px 0;
+}
+
+/* 滚动条样式（可选） */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 10px;
+}
+
+/* 页面内链接目标定位 */
+.section {
+    padding-top: 60px; /* 为了避开固定导航栏 */
+    margin-top: -60px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+  }
+  
+  ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  
+  ul li strong {
+    color: #000;
+    font-weight: bold;
+  }
+  pre {
+    background-color: #f4f4f4; /* 背景色设置为灰色 */
+    border: 1px solid #ddd; /* 边框颜色 */
+    padding: 20px; /* 内部留白 */
+    margin: 20px 0; /* 上下留白 */
+    overflow-x: auto; /* 防止代码溢出时隐藏 */
+    width: calc(100% - 40px); /* 设置代码块宽度，减去左右的内边距 */
+    box-sizing: border-box; /* 确保宽度计算时包括内边距 */
+    margin-left: auto; /* 自动设置左边距 */
+    margin-right: auto; /* 自动设置右边距 */
+    border-radius: 10px; /* 圆角效果 */
+}
+
+code {
+    display: block; /* 使 code 标签显示为块级元素 */
+    white-space: pre-wrap; /* 允许长行文字换行 */
+    word-wrap: break-word; /* 强制在单词边界处换行 */
+    font-size: 1.2em; /* 增大代码字体大小 */
+}
+
+
+  
